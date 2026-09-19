@@ -1,0 +1,14 @@
+.godot/
+.import/
+export/
+*.tmp
+*.log
+*.bak
+.env
+.env.*
+*.env
+*.key
+*.pem
+*.token
+credentials.*
+secrets.*

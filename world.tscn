@@ -1,0 +1,751 @@
+[gd_scene format=3 uid="uid://bq3n8k7waw2x1"]
+
+[ext_resource type="PackedScene" uid="uid://c58b733buja8s" path="res://player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://uigameover0001" path="res://ui.tscn" id="2_ui"]
+[ext_resource type="Texture2D" uid="uid://8nhbg4awb4bh" path="res://assets/images/Background/Blue.png" id="3_bg"]
+[ext_resource type="Texture2D" path="res://assets/generated/props/grass_ground.png" id="4_grass"]
+[ext_resource type="Texture2D" path="res://assets/generated/props/wood_bridge.png" id="5_wood"]
+[ext_resource type="Texture2D" path="res://assets/generated/props/stone_pillar.png" id="6_stone"]
+[ext_resource type="Texture2D" path="res://assets/generated/props/cloud.png" id="7_cloud"]
+[ext_resource type="Texture2D" path="res://assets/generated/props/bush.png" id="8_bush"]
+[ext_resource type="PackedScene" uid="uid://dsnail0000001" path="res://snail.tscn" id="9_snail"]
+[ext_resource type="PackedScene" uid="uid://littleman0000001" path="res://little_man.tscn" id="10_littleman"]
+[ext_resource type="PackedScene" uid="uid://ccqpqgj3hve21" path="res://flying_enemy.tscn" id="10_bat"]
+[ext_resource type="PackedScene" uid="uid://coinscene00001" path="res://coin.tscn" id="11_coin"]
+[ext_resource type="PackedScene" uid="uid://checkpointscene001" path="res://checkpoint.tscn" id="12_checkpoint"]
+[ext_resource type="PackedScene" uid="uid://spikehazard0001" path="res://spike_hazard.tscn" id="13_spike"]
+[ext_resource type="PackedScene" uid="uid://goalscenes00001" path="res://goal.tscn" id="14_goal"]
+[ext_resource type="AudioStream" uid="uid://bmf82h434p3qg" path="res://assets/sounds/music.ogg" id="15_music"]
+[ext_resource type="Script" path="res://game_manager.gd" id="16_gm"]
+
+
+[sub_resource type="RectangleShape2D" id="shape_g1"]
+size = Vector2(800, 64)
+
+[sub_resource type="RectangleShape2D" id="shape_g2"]
+size = Vector2(260, 48)
+
+[sub_resource type="RectangleShape2D" id="shape_g3"]
+size = Vector2(380, 48)
+
+[sub_resource type="RectangleShape2D" id="shape_g4"]
+size = Vector2(600, 64)
+
+[sub_resource type="RectangleShape2D" id="shape_g5"]
+size = Vector2(340, 48)
+
+[sub_resource type="RectangleShape2D" id="shape_g6"]
+size = Vector2(500, 64)
+
+[sub_resource type="RectangleShape2D" id="shape_g7"]
+size = Vector2(160, 48)
+
+[sub_resource type="RectangleShape2D" id="shape_g8"]
+size = Vector2(180, 48)
+
+[sub_resource type="RectangleShape2D" id="shape_g9"]
+size = Vector2(140, 48)
+
+[sub_resource type="RectangleShape2D" id="shape_w1"]
+size = Vector2(130, 16)
+
+[sub_resource type="RectangleShape2D" id="shape_w2"]
+size = Vector2(170, 16)
+
+[sub_resource type="RectangleShape2D" id="shape_w3"]
+size = Vector2(200, 16)
+
+[sub_resource type="RectangleShape2D" id="shape_w_intro"]
+size = Vector2(70, 16)
+
+[sub_resource type="RectangleShape2D" id="shape_p1"]
+size = Vector2(32, 70)
+
+[sub_resource type="RectangleShape2D" id="shape_p2"]
+size = Vector2(32, 160)
+
+[sub_resource type="RectangleShape2D" id="shape_p3"]
+size = Vector2(32, 100)
+
+[sub_resource type="RectangleShape2D" id="shape_st1"]
+size = Vector2(100, 60)
+
+[sub_resource type="RectangleShape2D" id="shape_st2"]
+size = Vector2(100, 90)
+
+[sub_resource type="RectangleShape2D" id="shape_st3"]
+size = Vector2(300, 120)
+
+[node name="World" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("16_gm")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_music")
+volume_db = -8.0
+autoplay = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.25, 0.25)
+motion_mirroring = Vector2(2048, 0)
+
+[node name="Sky" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(0, -100)
+scale = Vector2(2, 2)
+texture = ExtResource("3_bg")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 4000, 600)
+
+[node name="Clouds" type="Node2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Cloud_0" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(150, 60)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(450, 90)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(800, 50)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(1200, 80)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(1600, 45)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(2000, 75)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_6" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(2400, 60)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_7" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(2800, 90)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_8" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(3200, 50)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_9" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(3600, 85)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_10" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(4000, 65)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_11" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(4400, 45)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_12" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(4800, 80)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_13" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(5200, 60)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_14" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(5600, 75)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_15" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(6000, 50)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+[node name="Cloud_16" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Clouds"]
+position = Vector2(6400, 80)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_cloud")
+
+[node name="Platforms" type="Node2D" parent="."]
+[node name="Ground_Start" type="StaticBody2D" parent="Platforms"]
+position = Vector2(400, 560)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Ground_Start"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 800, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground_Start"]
+shape = SubResource("shape_g1")
+[node name="Wood_Step_Intro" type="StaticBody2D" parent="Platforms"]
+position = Vector2(710, 500)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Wood_Step_Intro"]
+texture_repeat = 2
+texture = ExtResource("5_wood")
+region_enabled = true
+region_rect = Rect2(0, 0, 70, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Wood_Step_Intro"]
+shape = SubResource("shape_w_intro")
+one_way_collision = true
+[node name="Obstacle_Pillar_1" type="StaticBody2D" parent="Platforms"]
+position = Vector2(780, 495)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Obstacle_Pillar_1"]
+texture_repeat = 2
+texture = ExtResource("6_stone")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Obstacle_Pillar_1"]
+shape = SubResource("shape_p1")
+[node name="Platform_Elevated_1" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1000, 480)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform_Elevated_1"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 260, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform_Elevated_1"]
+shape = SubResource("shape_g2")
+[node name="Wood_Bridge_1" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1200, 440)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Wood_Bridge_1"]
+texture_repeat = 2
+texture = ExtResource("5_wood")
+region_enabled = true
+region_rect = Rect2(0, 0, 130, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Wood_Bridge_1"]
+shape = SubResource("shape_w1")
+one_way_collision = true
+[node name="Ground_Snail_Valley" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1500, 540)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Ground_Snail_Valley"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 380, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground_Snail_Valley"]
+shape = SubResource("shape_g3")
+[node name="Pillar_WallJump_Left" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1740, 440)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Pillar_WallJump_Left"]
+texture_repeat = 2
+texture = ExtResource("6_stone")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Pillar_WallJump_Left"]
+shape = SubResource("shape_p2")
+[node name="Pillar_WallJump_Right" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1920, 440)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Pillar_WallJump_Right"]
+texture_repeat = 2
+texture = ExtResource("6_stone")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Pillar_WallJump_Right"]
+shape = SubResource("shape_p2")
+[node name="Bridge_WallJump_Top" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1830, 340)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Bridge_WallJump_Top"]
+texture_repeat = 2
+texture = ExtResource("5_wood")
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Bridge_WallJump_Top"]
+shape = SubResource("shape_w3")
+one_way_collision = true
+[node name="Island_Stepping_1" type="StaticBody2D" parent="Platforms"]
+position = Vector2(2120, 450)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Island_Stepping_1"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 140, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Island_Stepping_1"]
+shape = SubResource("shape_g9")
+[node name="Island_Stepping_2" type="StaticBody2D" parent="Platforms"]
+position = Vector2(2380, 410)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Island_Stepping_2"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 160, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Island_Stepping_2"]
+shape = SubResource("shape_g7")
+[node name="Island_Stepping_3" type="StaticBody2D" parent="Platforms"]
+position = Vector2(2640, 450)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Island_Stepping_3"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 180, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Island_Stepping_3"]
+shape = SubResource("shape_g8")
+[node name="Ground_Checkpoint" type="StaticBody2D" parent="Platforms"]
+position = Vector2(3050, 550)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Ground_Checkpoint"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 600, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground_Checkpoint"]
+shape = SubResource("shape_g4")
+[node name="Wood_Hazard_1" type="StaticBody2D" parent="Platforms"]
+position = Vector2(3440, 470)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Wood_Hazard_1"]
+texture_repeat = 2
+texture = ExtResource("5_wood")
+region_enabled = true
+region_rect = Rect2(0, 0, 130, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Wood_Hazard_1"]
+shape = SubResource("shape_w1")
+one_way_collision = true
+[node name="Wood_Hazard_2" type="StaticBody2D" parent="Platforms"]
+position = Vector2(3680, 420)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Wood_Hazard_2"]
+texture_repeat = 2
+texture = ExtResource("5_wood")
+region_enabled = true
+region_rect = Rect2(0, 0, 170, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Wood_Hazard_2"]
+shape = SubResource("shape_w2")
+one_way_collision = true
+[node name="Ground_Snail_3" type="StaticBody2D" parent="Platforms"]
+position = Vector2(3980, 500)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Ground_Snail_3"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 340, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground_Snail_3"]
+shape = SubResource("shape_g5")
+[node name="Ground_Snail_4" type="StaticBody2D" parent="Platforms"]
+position = Vector2(4420, 550)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Ground_Snail_4"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 500, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground_Snail_4"]
+shape = SubResource("shape_g6")
+[node name="Wood_High_1" type="StaticBody2D" parent="Platforms"]
+position = Vector2(4320, 430)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Wood_High_1"]
+texture_repeat = 2
+texture = ExtResource("5_wood")
+region_enabled = true
+region_rect = Rect2(0, 0, 130, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Wood_High_1"]
+shape = SubResource("shape_w1")
+one_way_collision = true
+[node name="Wood_High_2" type="StaticBody2D" parent="Platforms"]
+position = Vector2(4560, 380)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Wood_High_2"]
+texture_repeat = 2
+texture = ExtResource("5_wood")
+region_enabled = true
+region_rect = Rect2(0, 0, 130, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Wood_High_2"]
+shape = SubResource("shape_w1")
+one_way_collision = true
+[node name="Pillar_Run_1" type="StaticBody2D" parent="Platforms"]
+position = Vector2(4840, 495)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Pillar_Run_1"]
+texture_repeat = 2
+texture = ExtResource("6_stone")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Pillar_Run_1"]
+shape = SubResource("shape_p1")
+[node name="Island_Run_2" type="StaticBody2D" parent="Platforms"]
+position = Vector2(5040, 440)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Island_Run_2"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 160, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Island_Run_2"]
+shape = SubResource("shape_g7")
+[node name="Pillar_Run_2" type="StaticBody2D" parent="Platforms"]
+position = Vector2(5240, 470)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Pillar_Run_2"]
+texture_repeat = 2
+texture = ExtResource("6_stone")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Pillar_Run_2"]
+shape = SubResource("shape_p3")
+[node name="Wood_Run_3" type="StaticBody2D" parent="Platforms"]
+position = Vector2(5420, 410)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Wood_Run_3"]
+texture_repeat = 2
+texture = ExtResource("5_wood")
+region_enabled = true
+region_rect = Rect2(0, 0, 170, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Wood_Run_3"]
+shape = SubResource("shape_w2")
+one_way_collision = true
+[node name="Ground_Final_Approach" type="StaticBody2D" parent="Platforms"]
+position = Vector2(5800, 540)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Ground_Final_Approach"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 500, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground_Final_Approach"]
+shape = SubResource("shape_g6")
+[node name="Stair_Step_1" type="StaticBody2D" parent="Platforms"]
+position = Vector2(6140, 510)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Stair_Step_1"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Stair_Step_1"]
+shape = SubResource("shape_st1")
+[node name="Stair_Step_2" type="StaticBody2D" parent="Platforms"]
+position = Vector2(6260, 460)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Stair_Step_2"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 90)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Stair_Step_2"]
+shape = SubResource("shape_st2")
+[node name="Victory_Plateau" type="StaticBody2D" parent="Platforms"]
+position = Vector2(6480, 400)
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Platforms/Victory_Plateau"]
+texture_repeat = 2
+texture = ExtResource("4_grass")
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Victory_Plateau"]
+shape = SubResource("shape_st3")
+
+[node name="Decorations" type="Node2D" parent="."]
+[node name="Bush_0" type="Sprite2D" parent="Decorations"]
+position = Vector2(150, 520)
+texture = ExtResource("8_bush")
+[node name="Bush_1" type="Sprite2D" parent="Decorations"]
+position = Vector2(320, 520)
+texture = ExtResource("8_bush")
+[node name="Bush_2" type="Sprite2D" parent="Decorations"]
+position = Vector2(580, 520)
+texture = ExtResource("8_bush")
+[node name="Bush_3" type="Sprite2D" parent="Decorations"]
+position = Vector2(980, 448)
+texture = ExtResource("8_bush")
+[node name="Bush_4" type="Sprite2D" parent="Decorations"]
+position = Vector2(1420, 508)
+texture = ExtResource("8_bush")
+[node name="Bush_5" type="Sprite2D" parent="Decorations"]
+position = Vector2(2850, 510)
+texture = ExtResource("8_bush")
+[node name="Bush_6" type="Sprite2D" parent="Decorations"]
+position = Vector2(3250, 510)
+texture = ExtResource("8_bush")
+[node name="Bush_7" type="Sprite2D" parent="Decorations"]
+position = Vector2(4250, 510)
+texture = ExtResource("8_bush")
+[node name="Bush_8" type="Sprite2D" parent="Decorations"]
+position = Vector2(4600, 510)
+texture = ExtResource("8_bush")
+[node name="Bush_9" type="Sprite2D" parent="Decorations"]
+position = Vector2(5650, 500)
+texture = ExtResource("8_bush")
+[node name="Bush_10" type="Sprite2D" parent="Decorations"]
+position = Vector2(6380, 332)
+texture = ExtResource("8_bush")
+
+[node name="Hazards" type="Node2D" parent="."]
+[node name="Spike_0" parent="Hazards" instance=ExtResource("13_spike")]
+position = Vector2(1280, 600)
+[node name="Spike_1" parent="Hazards" instance=ExtResource("13_spike")]
+position = Vector2(1312, 600)
+[node name="Spike_2" parent="Hazards" instance=ExtResource("13_spike")]
+position = Vector2(1344, 600)
+[node name="Spike_3" parent="Hazards" instance=ExtResource("13_spike")]
+position = Vector2(3560, 600)
+[node name="Spike_4" parent="Hazards" instance=ExtResource("13_spike")]
+position = Vector2(3592, 600)
+[node name="Spike_5" parent="Hazards" instance=ExtResource("13_spike")]
+position = Vector2(4750, 600)
+[node name="Spike_6" parent="Hazards" instance=ExtResource("13_spike")]
+position = Vector2(4782, 600)
+
+[node name="Checkpoint" parent="." instance=ExtResource("12_checkpoint")]
+position = Vector2(3050, 492)
+
+[node name="Goal" parent="." instance=ExtResource("14_goal")]
+position = Vector2(6520, 310)
+
+[node name="Enemies" type="Node2D" parent="."]
+[node name="Snail_1" parent="Enemies" instance=ExtResource("9_snail")]
+position = Vector2(620, 518)
+[node name="Snail_2" parent="Enemies" instance=ExtResource("9_snail")]
+position = Vector2(1500, 506)
+[node name="Snail_3" parent="Enemies" instance=ExtResource("9_snail")]
+position = Vector2(3980, 466)
+[node name="Snail_4" parent="Enemies" instance=ExtResource("9_snail")]
+position = Vector2(4450, 508)
+[node name="Snail_5" parent="Enemies" instance=ExtResource("9_snail")]
+position = Vector2(5040, 406)
+[node name="Snail_6" parent="Enemies" instance=ExtResource("9_snail")]
+position = Vector2(5780, 498)
+[node name="LittleMan_1" parent="Enemies" instance=ExtResource("10_littleman")]
+position = Vector2(460, 512)
+[node name="LittleMan_2" parent="Enemies" instance=ExtResource("10_littleman")]
+position = Vector2(1040, 440)
+[node name="LittleMan_3" parent="Enemies" instance=ExtResource("10_littleman")]
+position = Vector2(2380, 370)
+[node name="LittleMan_4" parent="Enemies" instance=ExtResource("10_littleman")]
+position = Vector2(3160, 502)
+[node name="LittleMan_5" parent="Enemies" instance=ExtResource("10_littleman")]
+position = Vector2(4020, 460)
+[node name="LittleMan_6" parent="Enemies" instance=ExtResource("10_littleman")]
+position = Vector2(5080, 400)
+[node name="LittleMan_7" parent="Enemies" instance=ExtResource("10_littleman")]
+position = Vector2(5860, 492)
+[node name="Bat_1" parent="Enemies" instance=ExtResource("10_bat")]
+position = Vector2(2240, 320)
+[node name="Bat_2" parent="Enemies" instance=ExtResource("10_bat")]
+position = Vector2(3780, 300)
+[node name="Bat_3" parent="Enemies" instance=ExtResource("10_bat")]
+position = Vector2(4320, 320)
+[node name="Bat_4" parent="Enemies" instance=ExtResource("10_bat")]
+position = Vector2(4680, 270)
+[node name="Bat_5" parent="Enemies" instance=ExtResource("10_bat")]
+position = Vector2(5920, 330)
+
+[node name="Coins" type="Node2D" parent="."]
+[node name="Coin_0" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(200, 480)
+[node name="Coin_1" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(250, 440)
+[node name="Coin_2" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(300, 480)
+[node name="Coin_3" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(480, 480)
+[node name="Coin_4" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(710, 440)
+[node name="Coin_5" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(740, 400)
+[node name="Coin_6" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(780, 360)
+[node name="Coin_7" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(820, 400)
+[node name="Coin_8" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(960, 420)
+[node name="Coin_9" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(1020, 420)
+[node name="Coin_10" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(1080, 420)
+[node name="Coin_11" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(1160, 390)
+[node name="Coin_12" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(1200, 370)
+[node name="Coin_13" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(1240, 390)
+[node name="Coin_14" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(1440, 480)
+[node name="Coin_15" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(1500, 460)
+[node name="Coin_16" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(1560, 480)
+[node name="Coin_17" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(1830, 460)
+[node name="Coin_18" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(1830, 400)
+[node name="Coin_19" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(1830, 340)
+[node name="Coin_20" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(1830, 280)
+[node name="Coin_21" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(2120, 390)
+[node name="Coin_22" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(2250, 330)
+[node name="Coin_23" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(2380, 350)
+[node name="Coin_24" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(2510, 380)
+[node name="Coin_25" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(2640, 390)
+[node name="Coin_26" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(2980, 470)
+[node name="Coin_27" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(3050, 430)
+[node name="Coin_28" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(3120, 470)
+[node name="Coin_29" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(3400, 410)
+[node name="Coin_30" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(3440, 390)
+[node name="Coin_31" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(3480, 410)
+[node name="Coin_32" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(3640, 360)
+[node name="Coin_33" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(3680, 340)
+[node name="Coin_34" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(3720, 360)
+[node name="Coin_35" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(3920, 440)
+[node name="Coin_36" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(3980, 420)
+[node name="Coin_37" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(4040, 440)
+[node name="Coin_38" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(4300, 370)
+[node name="Coin_39" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(4340, 350)
+[node name="Coin_40" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(4540, 320)
+[node name="Coin_41" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(4580, 300)
+[node name="Coin_42" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(4840, 400)
+[node name="Coin_43" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(5040, 360)
+[node name="Coin_44" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(5240, 380)
+[node name="Coin_45" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(5380, 350)
+[node name="Coin_46" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(5420, 330)
+[node name="Coin_47" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(5460, 350)
+[node name="Coin_48" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(5700, 460)
+[node name="Coin_49" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(5760, 440)
+[node name="Coin_50" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(5820, 460)
+[node name="Coin_51" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(6140, 440)
+[node name="Coin_52" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(6260, 390)
+[node name="Coin_53" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(6420, 310)
+[node name="Coin_54" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(6460, 280)
+[node name="Coin_55" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(6500, 250)
+[node name="Coin_56" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(6540, 280)
+[node name="Coin_57" parent="Coins" instance=ExtResource("11_coin")]
+position = Vector2(6580, 310)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(100, 480)
+
+[node name="GameUI" parent="." instance=ExtResource("2_ui")]

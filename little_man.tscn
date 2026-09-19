@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://littleman0000001"]
+
+[ext_resource type="Script" path="res://little_man.gd" id="1_script"]
+[ext_resource type="AudioStream" uid="uid://cmi8qycmgwdge" path="res://assets/sounds/death.wav" id="2_death_snd"]
+[ext_resource type="Texture2D" path="res://assets/images/Piskel/sprite_0.png" id="3_sp0"]
+[ext_resource type="Texture2D" path="res://assets/images/Piskel/sprite_1.png" id="4_sp1"]
+[ext_resource type="Texture2D" path="res://assets/images/Piskel/sprite_2.png" id="5_sp2"]
+[ext_resource type="Texture2D" path="res://assets/images/Piskel/sprite_3.png" id="6_sp3"]
+[ext_resource type="Texture2D" path="res://assets/images/Piskel/hit_0.png" id="7_hit0"]
+[ext_resource type="Texture2D" path="res://assets/images/Piskel/hit_1.png" id="8_hit1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_hit0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hit1")
+}],
+"loop": 0,
+"name": &"hit",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_sp0")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_sp0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sp1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_sp2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sp3")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="lm_shape"]
+size = Vector2(16, 26)
+
+[sub_resource type="RectangleShape2D" id="lm_hitbox_shape"]
+size = Vector2(18, 28)
+
+[node name="LittleMan" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lm")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("lm_shape")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 1
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 2)
+shape = SubResource("lm_hitbox_shape")
+
+[node name="FloorDetector" type="RayCast2D" parent="."]
+position = Vector2(-12, 10)
+target_position = Vector2(0, 16)
+collision_mask = 1
+enabled = true
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_death_snd")

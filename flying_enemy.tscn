@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ccqpqgj3hve21"]
+
+[ext_resource type="Script" uid="uid://bnxxwnec35mph" path="res://flying_enemy.gd" id="1_script"]
+[ext_resource type="AudioStream" uid="uid://cmi8qycmgwdge" path="res://assets/sounds/death.wav" id="2_death"]
+[ext_resource type="Texture2D" uid="uid://cpo0chihj0bxx" path="res://assets/generated/bat_fly.png" id="2_ve0v3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4apei"]
+atlas = ExtResource("2_ve0v3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tc66b"]
+atlas = ExtResource("2_ve0v3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ph6s"]
+atlas = ExtResource("2_ve0v3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdbr1"]
+atlas = ExtResource("2_ve0v3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h68hl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4apei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tc66b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ph6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdbr1")
+}],
+"loop": 1,
+"name": &"subtle_motion",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="bat_collision"]
+size = Vector2(20, 28)
+
+[node name="FlyingEnemy" type="Area2D" unique_id=439481956]
+collision_layer = 2
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=468791779]
+scale = Vector2(1.0, 1.0)
+sprite_frames = SubResource("SpriteFrames_h68hl")
+animation = &"subtle_motion"
+autoplay = "subtle_motion"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=458772833]
+shape = SubResource("bat_collision")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=801189872]
+stream = ExtResource("2_death")

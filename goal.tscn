@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://goalscenes00001"]
+
+[ext_resource type="Script" path="res://goal.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://c5qukex7eb0q2" path="res://assets/fonts/Square-Black.ttf" id="2_font"]
+[ext_resource type="Texture2D" path="res://assets/generated/checkpoint/flag_0.png" id="3_flag"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_goal"]
+size = Vector2(48, 64)
+
+[node name="Goal" type="Area2D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.85, 0.2, 1)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("3_flag")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_goal")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -100.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = -30.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1, 0.9, 0.1, 1)
+text = "LEVEL CLEAR!"
+horizontal_alignment = 1
